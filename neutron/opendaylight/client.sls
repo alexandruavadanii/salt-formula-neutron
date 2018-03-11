@@ -17,13 +17,13 @@ ovs_set_manager:
 ovs_set_tunnel_endpoint:
   cmd.run:
   - name: 'ovs-vsctl set Open_vSwitch . other_config:local_ip={{ neutron.opendaylight.tunnel_ip }}'
-  - unless: 'ovs-vsctl get Open_vSwitch . other_config | fgrep local_ip="{{ neutron.opendaylight.tunnel_ip }}"'
+  - unless: 'ovs-vsctl get Open_vSwitch . other_config | fgrep local_ip=\"{{ neutron.opendaylight.tunnel_ip }}\"'
 
 {%- if neutron.opendaylight.provider_mappings is defined %}
 ovs_set_provider_mappings:
   cmd.run:
   - name: 'ovs-vsctl set Open_vSwitch . other_config:provider_mappings={{ neutron.opendaylight.provider_mappings }}'
-  - unless: 'ovs-vsctl get Open_vSwitch . other_config | fgrep provider_mappings="{{ neutron.opendaylight.provider_mappings }}"'
+  - unless: 'ovs-vsctl get Open_vSwitch . other_config | fgrep provider_mappings=\"{{ neutron.opendaylight.provider_mappings }}\"'
 {%- endif %}
 
 neutron_odl_ovs_hostconfig:
